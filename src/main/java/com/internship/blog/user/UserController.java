@@ -1,4 +1,4 @@
-package com.internship.blog.data;
+package com.internship.blog.user;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

@@ -13,10 +13,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	@Qualifier("rest-template")
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
 }
