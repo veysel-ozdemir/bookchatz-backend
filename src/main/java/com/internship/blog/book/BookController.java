@@ -1,4 +1,4 @@
-package com.internship.blog.user;
+package com.internship.blog.book;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,45 +12,38 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/books")
 @RequiredArgsConstructor
-public class UserController {
+public class BookController {
 
-    private final UserService userService;
+    private final BookService bookService;
 
-    // post method with request body for register
-    @PostMapping("/register")
+    // create new book
+    @PostMapping("/new-book")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User register(@Valid @RequestBody UserDto userDto) {
-        return userService.register(userDto);
+    public Book createBook(@Valid @RequestBody BookDto bookDto) {
+        return bookService.createBook(bookDto);
     }
 
-    // post method with request body for login
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public boolean login(@Valid @RequestBody UserLoginDto userLoginDto) {
-        return userService.login(userLoginDto);
-    }
-
-    // get all users
+    // get all books
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<Book> getAllBooks() {
+        return bookService.getBooks();
     }
 
-    // get method with path variable
+    // get book by id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User getUserById(@PathVariable("id") Integer id) {
-        return userService.getUserById(id);
+    public Book getBookById(@PathVariable("id") Integer id) {
+        return bookService.getBookById(id);
     }
 
-    // delete method with path variable
+    // delete book by id
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteUserById(@PathVariable("id") Integer id) {
-        return userService.deleteUserById(id);
+    public String deleteBookById(@PathVariable("id") Integer id) {
+        return bookService.deleteBookById(id);
     }
 
     // exception handler of invalid parameters

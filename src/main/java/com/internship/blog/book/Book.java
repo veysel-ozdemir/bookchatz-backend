@@ -1,12 +1,9 @@
-package com.internship.blog.user;
+package com.internship.blog.book;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.internship.blog.post.Post;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -14,21 +11,22 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "book")
+public class Book {
     @GeneratedValue
     @Id
-    @Column(name = "user_id")
+    @Column(name = "book_id")
     private Integer id;
-    private String fullname;
-    private String password;
-    @Column(unique = true)
-    private String email;
+    private String title;
+    private String authorName;
+    @Enumerated(EnumType.STRING)
+    private BookType bookType;
     @Column(name = "photo_url")
     private String photoUrl;
     @OneToMany(
-            mappedBy = "user"
+            mappedBy = "book"
     )
     @JsonManagedReference
     private List<Post> posts;

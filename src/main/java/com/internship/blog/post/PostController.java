@@ -1,4 +1,4 @@
-package com.internship.blog.user;
+package com.internship.blog.post;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,45 +12,38 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/posts")
 @RequiredArgsConstructor
-public class UserController {
+public class PostController {
 
-    private final UserService userService;
+    private final PostService postService;
 
-    // post method with request body for register
-    @PostMapping("/register")
+    // create new post
+    @PostMapping("/new-post")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User register(@Valid @RequestBody UserDto userDto) {
-        return userService.register(userDto);
+    public Post createPost(@Valid @RequestBody PostDto postDto) {
+        return postService.createPost(postDto);
     }
 
-    // post method with request body for login
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public boolean login(@Valid @RequestBody UserLoginDto userLoginDto) {
-        return userService.login(userLoginDto);
-    }
-
-    // get all users
+    // get all posts
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<User> getUsers() {
-        return userService.getUsers();
+    public List<Post> getAllPosts() {
+        return postService.getPosts();
     }
 
-    // get method with path variable
+    // get post by id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public User getUserById(@PathVariable("id") Integer id) {
-        return userService.getUserById(id);
+    public Post getPostById(@PathVariable("id") Integer id) {
+        return postService.getPostById(id);
     }
 
-    // delete method with path variable
+    // delete post by id
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteUserById(@PathVariable("id") Integer id) {
-        return userService.deleteUserById(id);
+    public String deletePostById(@PathVariable("id") Integer id) {
+        return postService.deletePostById(id);
     }
 
     // exception handler of invalid parameters
@@ -65,3 +58,4 @@ public class UserController {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }
+

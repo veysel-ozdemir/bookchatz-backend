@@ -1,20 +1,29 @@
 package com.internship.blog.user;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
 
-    final UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public boolean login(UserLoginDto userLoginDto) {
+        User loginUser = userRepository.findByEmailAndPassword(
+                userLoginDto.email(),
+                userLoginDto.password()
+        ).orElse(null);
+        return loginUser != null; // todo: change the return data later (ResponseDto)
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public User register(UserDto userDto) {
+        User user = userMapper.toUser(userDto);
+        userRepository.save(user);
+        return user; // todo: change the return data later (ResponseDto)
     }
 
     public List<User> getUsers() {
@@ -23,10 +32,6 @@ public class UserService {
 
     public User getUserById(Integer id) {
         return userRepository.findById(id).orElse(null);
-    }
-
-    public List<User> getUsersByFullname(String fullname) {
-        return userRepository.findAllByFullnameContains(fullname);
     }
 
     public String deleteUserById(Integer id) {
