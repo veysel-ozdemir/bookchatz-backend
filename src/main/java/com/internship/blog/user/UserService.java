@@ -35,6 +35,10 @@ public class UserService {
     }
 
     public String deleteUserById(Integer id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return "User not found with id: " + id;
+        }
         userRepository.deleteById(id);
         return "User with id " + id + " was deleted";
     }

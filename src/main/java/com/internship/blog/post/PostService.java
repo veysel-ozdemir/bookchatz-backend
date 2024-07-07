@@ -27,6 +27,10 @@ public class PostService {
     }
 
     public String deletePostById(Integer id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            return "Post not found with id: " + id;
+        }
         postRepository.deleteById(id);
         return "Post with id " + id + " was deleted";
     }

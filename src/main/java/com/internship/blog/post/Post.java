@@ -1,6 +1,7 @@
 package com.internship.blog.post;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.internship.blog.book.Book;
 import com.internship.blog.user.User;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "post")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
     @GeneratedValue
     @Id
@@ -22,11 +24,9 @@ public class Post {
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
     private User user;
     @ManyToOne
     @JoinColumn(name = "book_id")
-    @JsonBackReference
     private Book book;
     private String review;
 }

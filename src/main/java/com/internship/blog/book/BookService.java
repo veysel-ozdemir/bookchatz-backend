@@ -31,6 +31,10 @@ public class BookService {
     }
 
     public String deleteBookById(Integer id) {
+        Book book = bookRepository.findById(id).orElse(null);
+        if (book == null) {
+            return "Book not found with id: " + id;
+        }
         bookRepository.deleteById(id);
         return "Book with id " + id + " was deleted";
     }

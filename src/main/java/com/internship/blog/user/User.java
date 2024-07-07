@@ -1,6 +1,7 @@
 package com.internship.blog.user;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.internship.blog.post.Post;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @GeneratedValue
     @Id
@@ -30,6 +32,5 @@ public class User {
     @OneToMany(
             mappedBy = "user"
     )
-    @JsonManagedReference
     private List<Post> posts;
 }
