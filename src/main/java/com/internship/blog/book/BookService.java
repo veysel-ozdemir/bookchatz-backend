@@ -13,13 +13,17 @@ public class BookService {
     private final BookMapper bookMapper;
 
     public Book getBookByTitleAndAuthorName(String title, String authorName) {
-        return bookRepository.findBookByTitleContainingIgnoreCaseAndAuthorNameContainingIgnoreCase(title, authorName).orElse(null);
+        return bookRepository.findBookByTitleIgnoreCaseAndAuthorNameIgnoreCase(title, authorName).orElse(null);
     }
 
     public Book createBook(BookDto bookDto) {
         Book book = bookMapper.toBook(bookDto);
         bookRepository.save(book);
         return book; // todo: change the return data later (ResponseDto)
+    }
+
+    public void saveBook(Book book) {
+        bookRepository.save(book);
     }
 
     public List<Book> getBooks() {

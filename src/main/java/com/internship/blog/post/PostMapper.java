@@ -7,6 +7,8 @@ import com.internship.blog.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @RequiredArgsConstructor
 @Service
 public class PostMapper {
@@ -33,6 +35,9 @@ public class PostMapper {
             book.setAuthorName(postDto.authorName());
             book.setBookType(postDto.bookType());
             book.setPhotoUrl(postDto.bookPhotoUrl());
+            book.setPosts(new ArrayList<Post>());
+            // save the new created book to persist data
+            bookService.saveBook(book);
         }
         book.getPosts().add(post);
 
