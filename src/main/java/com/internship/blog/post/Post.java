@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -29,4 +31,6 @@ public class Post {
     @JoinColumn(name = "book_id")
     private Book book;
     private String review;
+    @Column(name = "commit_date")
+    private LocalDate commitDate;
 }

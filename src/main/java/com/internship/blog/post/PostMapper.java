@@ -7,6 +7,7 @@ import com.internship.blog.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class PostMapper {
                 postDto.bookTitle(),
                 postDto.authorName()
         );
-        if(book == null) {
+        if (book == null) {
             book = new Book();
             book.setTitle(postDto.bookTitle());
             book.setAuthorName(postDto.authorName());
@@ -42,6 +43,7 @@ public class PostMapper {
         book.getPosts().add(post);
 
         // set the fields of post
+        post.setCommitDate(LocalDate.now());
         post.setReview(postDto.bookReview());
         post.setUser(user);
         post.setBook(book);
