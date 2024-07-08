@@ -1,5 +1,8 @@
-package com.internship.blog.post;
+package com.internship.blog.controller;
 
+import com.internship.blog.model.Book;
+import com.internship.blog.dto.BookDto;
+import com.internship.blog.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,38 +15,38 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/books")
 @RequiredArgsConstructor
-public class PostController {
+public class BookController {
 
-    private final PostService postService;
+    private final BookService bookService;
 
-    // create new post
-    @PostMapping("/new-post")
+    // create new book
+    @PostMapping("/new-book")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Post createPost(@Valid @RequestBody PostDto postDto) {
-        return postService.createPost(postDto);
+    public Book createBook(@Valid @RequestBody BookDto bookDto) {
+        return bookService.createBook(bookDto);
     }
 
-    // get all posts
+    // get all books
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Post> getAllPosts() {
-        return postService.getPosts();
+    public List<Book> getAllBooks() {
+        return bookService.getBooks();
     }
 
-    // get post by id
+    // get book by id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Post getPostById(@PathVariable("id") Integer id) {
-        return postService.getPostById(id);
+    public Book getBookById(@PathVariable("id") Integer id) {
+        return bookService.getBookById(id);
     }
 
-    // delete post by id
+    // delete book by id
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deletePostById(@PathVariable("id") Integer id) {
-        return postService.deletePostById(id);
+    public String deleteBookById(@PathVariable("id") Integer id) {
+        return bookService.deleteBookById(id);
     }
 
     // exception handler of invalid parameters
@@ -58,4 +61,3 @@ public class PostController {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }
-

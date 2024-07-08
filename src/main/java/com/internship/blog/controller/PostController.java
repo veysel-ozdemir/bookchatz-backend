@@ -1,5 +1,8 @@
-package com.internship.blog.book;
+package com.internship.blog.controller;
 
+import com.internship.blog.model.Post;
+import com.internship.blog.dto.PostDto;
+import com.internship.blog.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,38 +15,38 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/posts")
 @RequiredArgsConstructor
-public class BookController {
+public class PostController {
 
-    private final BookService bookService;
+    private final PostService postService;
 
-    // create new book
-    @PostMapping("/new-book")
+    // create new post
+    @PostMapping("/new-post")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Book createBook(@Valid @RequestBody BookDto bookDto) {
-        return bookService.createBook(bookDto);
+    public Post createPost(@Valid @RequestBody PostDto postDto) {
+        return postService.createPost(postDto);
     }
 
-    // get all books
+    // get all posts
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Book> getAllBooks() {
-        return bookService.getBooks();
+    public List<Post> getAllPosts() {
+        return postService.getPosts();
     }
 
-    // get book by id
+    // get post by id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Book getBookById(@PathVariable("id") Integer id) {
-        return bookService.getBookById(id);
+    public Post getPostById(@PathVariable("id") Integer id) {
+        return postService.getPostById(id);
     }
 
-    // delete book by id
+    // delete post by id
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteBookById(@PathVariable("id") Integer id) {
-        return bookService.deleteBookById(id);
+    public String deletePostById(@PathVariable("id") Integer id) {
+        return postService.deletePostById(id);
     }
 
     // exception handler of invalid parameters
@@ -58,3 +61,4 @@ public class BookController {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }
+

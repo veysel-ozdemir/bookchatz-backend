@@ -1,9 +1,8 @@
-package com.internship.blog;
+package com.internship.blog.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.internship.blog.book.BookDto;
-import com.internship.blog.book.BookService;
+import com.internship.blog.dto.BookDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

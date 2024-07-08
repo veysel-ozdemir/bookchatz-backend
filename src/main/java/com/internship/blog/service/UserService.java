@@ -1,5 +1,9 @@
-package com.internship.blog.user;
+package com.internship.blog.service;
 
+import com.internship.blog.model.User;
+import com.internship.blog.dto.UserDto;
+import com.internship.blog.dto.UserLoginDto;
+import com.internship.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

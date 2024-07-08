@@ -1,6 +1,6 @@
-package com.internship.blog.post;
+package com.internship.blog.dto;
 
-import com.internship.blog.book.BookType;
+import com.internship.blog.enums.BookType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

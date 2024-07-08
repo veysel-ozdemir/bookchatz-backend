@@ -1,9 +1,7 @@
-package com.internship.blog.post;
+package com.internship.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.internship.blog.book.Book;
-import com.internship.blog.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,9 +1,10 @@
-package com.internship.blog;
+package com.internship.blog.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.internship.blog.book.BookService;
-import com.internship.blog.user.UserDto;
-import com.internship.blog.user.UserService;
+import com.internship.blog.service.BookService;
+import com.internship.blog.service.JsonFileService;
+import com.internship.blog.dto.UserDto;
+import com.internship.blog.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

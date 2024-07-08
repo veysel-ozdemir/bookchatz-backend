@@ -1,6 +1,8 @@
-package com.internship.blog.user;
+package com.internship.blog.service;
 
-import com.internship.blog.post.Post;
+import com.internship.blog.dto.UserDto;
+import com.internship.blog.model.Post;
+import com.internship.blog.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

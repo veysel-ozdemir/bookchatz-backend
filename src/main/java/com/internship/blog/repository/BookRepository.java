@@ -1,5 +1,6 @@
-package com.internship.blog.book;
+package com.internship.blog.repository;
 
+import com.internship.blog.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

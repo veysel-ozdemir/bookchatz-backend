@@ -1,4 +1,4 @@
-package com.internship.blog.book;
+package com.internship.blog.enums;
 
 public enum BookType {
     HISTORY,

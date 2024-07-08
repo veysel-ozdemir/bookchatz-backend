@@ -1,9 +1,9 @@
-package com.internship.blog.post;
+package com.internship.blog.service;
 
-import com.internship.blog.book.Book;
-import com.internship.blog.book.BookService;
-import com.internship.blog.user.User;
-import com.internship.blog.user.UserService;
+import com.internship.blog.dto.PostDto;
+import com.internship.blog.model.Book;
+import com.internship.blog.model.Post;
+import com.internship.blog.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
