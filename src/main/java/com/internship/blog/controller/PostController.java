@@ -1,7 +1,8 @@
 package com.internship.blog.controller;
 
-import com.internship.blog.model.Post;
 import com.internship.blog.dto.PostDto;
+import com.internship.blog.dto.PostEditDto;
+import com.internship.blog.model.Post;
 import com.internship.blog.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,13 @@ public class PostController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Post createPost(@Valid @RequestBody PostDto postDto) {
         return postService.createPost(postDto);
+    }
+
+    // edit post
+    @PutMapping("/edit-post")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Post updatePost(@Valid @RequestBody PostEditDto postEditDto) {
+        return postService.updatePost(postEditDto);
     }
 
     // get all posts
