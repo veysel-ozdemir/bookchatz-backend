@@ -2,6 +2,7 @@ package com.internship.blog.service;
 
 import com.internship.blog.dto.UserDto;
 import com.internship.blog.dto.UserEditDto;
+import com.internship.blog.dto.UserResponseDto;
 import com.internship.blog.model.Post;
 import com.internship.blog.model.User;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,9 @@ public class UserMapper {
         presentUser.setPhotoUrl(userEditDto.photoUrl());
 
         return presentUser;
+    }
+
+    public UserResponseDto toUserResponseDto(User user) {
+        return new UserResponseDto(user.getFullname(), user.getPhotoUrl(), user.getId());
     }
 }

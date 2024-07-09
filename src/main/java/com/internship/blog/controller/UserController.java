@@ -25,23 +25,19 @@ public class UserController {
 
     // post method with request body for register
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public User register(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<Object> register(@Valid @RequestBody UserDto userDto) {
         return userService.register(userDto);
     }
 
     // post method with request body for login
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public boolean login(@Valid @RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<Object> login(@Valid @RequestBody UserLoginDto userLoginDto) {
         return userService.login(userLoginDto);
     }
 
     // edit user
     @PutMapping("/edit-user")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public User updateUser(@Valid @RequestBody UserEditDto userEditDto) {
-        // todo: the return value should indicate a proper message whether an exception arisen or the operation succeed
+    public ResponseEntity<Object> updateUser(@Valid @RequestBody UserEditDto userEditDto) {
         return userService.updateUser(userEditDto);
     }
 
