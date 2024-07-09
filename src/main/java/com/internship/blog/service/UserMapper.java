@@ -1,6 +1,7 @@
 package com.internship.blog.service;
 
 import com.internship.blog.dto.UserDto;
+import com.internship.blog.dto.UserEditDto;
 import com.internship.blog.model.Post;
 import com.internship.blog.model.User;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,15 @@ public class UserMapper {
         user.setPosts(new ArrayList<Post>());
 
         return user;
+    }
+
+    public User toUpdatedUser(UserEditDto userEditDto, User presentUser) {
+        // set the fields of user
+        presentUser.setFullname(userEditDto.fullname());
+        presentUser.setEmail(userEditDto.email());
+        presentUser.setPassword(userEditDto.password());
+        presentUser.setPhotoUrl(userEditDto.photoUrl());
+
+        return presentUser;
     }
 }

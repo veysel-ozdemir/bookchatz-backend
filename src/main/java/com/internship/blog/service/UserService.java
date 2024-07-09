@@ -1,8 +1,9 @@
 package com.internship.blog.service;
 
-import com.internship.blog.model.User;
 import com.internship.blog.dto.UserDto;
+import com.internship.blog.dto.UserEditDto;
 import com.internship.blog.dto.UserLoginDto;
+import com.internship.blog.model.User;
 import com.internship.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,22 @@ public class UserService {
         User user = userMapper.toUser(userDto);
         userRepository.save(user);
         return user; // todo: change the return data later (ResponseDto)
+    }
+
+    public User updateUser(UserEditDto userEditDto) {
+        // get present user
+        User presentUser = userRepository.findById(userEditDto.userId()).orElse(null);
+        // create an assertion whether the user exists
+        assert presentUser != null : "User not found with provided id" + userEditDto.userId();
+        // check whether the entered email is available
+        if (userRepository.findByEmail(userEditDto.email()).isEmpty()) {
+            // map the entity
+            User updatedUser = userMapper.toUpdatedUser(userEditDto, presentUser);
+            // save the changes
+            userRepository.save(updatedUser);
+            return updatedUser; // todo: change the return data later (ResponseDto)
+        }
+        return null;
     }
 
     public List<User> getUsers() {

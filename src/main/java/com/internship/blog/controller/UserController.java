@@ -1,8 +1,9 @@
 package com.internship.blog.controller;
 
-import com.internship.blog.model.User;
 import com.internship.blog.dto.UserDto;
+import com.internship.blog.dto.UserEditDto;
 import com.internship.blog.dto.UserLoginDto;
+import com.internship.blog.model.User;
 import com.internship.blog.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,14 @@ public class UserController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public boolean login(@Valid @RequestBody UserLoginDto userLoginDto) {
         return userService.login(userLoginDto);
+    }
+
+    // edit user
+    @PutMapping("/edit-user")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public User updateUser(@Valid @RequestBody UserEditDto userEditDto) {
+        // todo: the return value should indicate a proper message whether an exception arisen or the operation succeed
+        return userService.updateUser(userEditDto);
     }
 
     // get all users
