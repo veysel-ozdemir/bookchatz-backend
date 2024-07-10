@@ -22,7 +22,6 @@ public class BookController {
 
     // get all books
     @GetMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Object> getAllBooks() {
         return bookService.getBooks();
     }

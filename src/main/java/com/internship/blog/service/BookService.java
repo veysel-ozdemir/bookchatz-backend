@@ -21,7 +21,7 @@ public class BookService {
     public Book createBook(BookDto bookDto) {
         Book book = bookMapper.toBook(bookDto);
         bookRepository.save(book);
-        return book; // todo: change the return data later (ResponseDto)
+        return book;
     }
 
     public void saveBook(Book book) {
