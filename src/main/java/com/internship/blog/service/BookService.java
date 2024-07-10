@@ -1,12 +1,11 @@
 package com.internship.blog.service;
 
 import com.internship.blog.dto.BookDto;
-import com.internship.blog.repository.BookRepository;
 import com.internship.blog.model.Book;
+import com.internship.blog.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -29,8 +28,8 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public List<Book> getBooks() {
-        return bookRepository.findAll();
+    public ResponseEntity<Object> getBooks() {
+        return ResponseEntity.ok(bookRepository.findAll().stream().map(bookMapper::toBookResponseDto));
     }
 
     public Book getBookById(Integer id) {

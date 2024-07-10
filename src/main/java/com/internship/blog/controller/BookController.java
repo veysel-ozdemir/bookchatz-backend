@@ -1,7 +1,7 @@
 package com.internship.blog.controller;
 
-import com.internship.blog.model.Book;
 import com.internship.blog.dto.BookDto;
+import com.internship.blog.model.Book;
 import com.internship.blog.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -21,18 +20,18 @@ public class BookController {
 
     private final BookService bookService;
 
+    // get all books
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity<Object> getAllBooks() {
+        return bookService.getBooks();
+    }
+
     // create new book
     @PostMapping("/new-book")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Book createBook(@Valid @RequestBody BookDto bookDto) {
         return bookService.createBook(bookDto);
-    }
-
-    // get all books
-    @GetMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Book> getAllBooks() {
-        return bookService.getBooks();
     }
 
     // get book by id

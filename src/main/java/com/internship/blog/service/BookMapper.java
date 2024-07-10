@@ -1,6 +1,7 @@
 package com.internship.blog.service;
 
 import com.internship.blog.dto.BookDto;
+import com.internship.blog.dto.BookResponseDto;
 import com.internship.blog.model.Book;
 import com.internship.blog.model.Post;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,15 @@ public class BookMapper {
         book.setPosts(new ArrayList<Post>());
 
         return book;
+    }
+
+    public BookResponseDto toBookResponseDto(Book book) {
+        return new BookResponseDto(
+                book.getId(),
+                book.getTitle(),
+                book.getAuthorName(),
+                book.getBookType(),
+                book.getPhotoUrl()
+        );
     }
 }
