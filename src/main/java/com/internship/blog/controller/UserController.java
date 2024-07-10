@@ -43,9 +43,14 @@ public class UserController {
 
     // get all users
     @GetMapping("/all")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public List<User> getUsers() {
         return userService.getUsers();
+    }
+
+    // delete method with path variable
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Object> deleteUserById(@PathVariable("id") Integer id) {
+        return userService.deleteUserById(id);
     }
 
     // get method with path variable
@@ -53,13 +58,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public User getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
-    }
-
-    // delete method with path variable
-    @DeleteMapping("/delete/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public String deleteUserById(@PathVariable("id") Integer id) {
-        return userService.deleteUserById(id);
     }
 
     // exception handler of invalid parameters

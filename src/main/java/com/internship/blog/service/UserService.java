@@ -67,21 +67,21 @@ public class UserService {
         }
     }
 
+    public ResponseEntity<Object> deleteUserById(Integer id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + id);
+        }
+        userRepository.deleteById(id);
+        return ResponseEntity.ok("User was deleted successfully");
+    }
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
     public User getUserById(Integer id) {
         return userRepository.findById(id).orElse(null);
-    }
-
-    public String deleteUserById(Integer id) {
-        User user = userRepository.findById(id).orElse(null);
-        if (user == null) {
-            return "User not found with id: " + id;
-        }
-        userRepository.deleteById(id);
-        return "User with id " + id + " was deleted";
     }
 
 }
