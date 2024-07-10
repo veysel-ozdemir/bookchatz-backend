@@ -2,6 +2,7 @@ package com.internship.blog.service;
 
 import com.internship.blog.dto.PostDto;
 import com.internship.blog.dto.PostEditDto;
+import com.internship.blog.dto.PostResponseDto;
 import com.internship.blog.model.Book;
 import com.internship.blog.model.Post;
 import com.internship.blog.model.User;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
@@ -79,5 +81,25 @@ public class PostMapper {
         presentPost.setBook(book);
 
         return presentPost;
+    }
+
+    public PostResponseDto toPostResponseDto(Post post) {
+        // format the date
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate postDate = post.getCommitDate();
+        String formattedDate = postDate.format(formatter);
+
+        return new PostResponseDto(
+                post.getId(),
+                post.getReview(),
+                formattedDate,
+                post.getUser().getId(),
+                post.getUser().getFullname(),
+                post.getUser().getPhotoUrl(),
+                post.getBook().getTitle(),
+                post.getBook().getAuthorName(),
+                post.getBook().getPhotoUrl(),
+                post.getBook().getBookType().toString()
+        );
     }
 }

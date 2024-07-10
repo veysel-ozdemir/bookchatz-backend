@@ -13,7 +13,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -25,21 +24,21 @@ public class PostController {
     // create new post
     @PostMapping("/new-post")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Post createPost(@Valid @RequestBody PostDto postDto) {
+    public ResponseEntity<Object> createPost(@Valid @RequestBody PostDto postDto) {
         return postService.createPost(postDto);
     }
 
     // edit post
     @PutMapping("/edit-post")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Post updatePost(@Valid @RequestBody PostEditDto postEditDto) {
+    public ResponseEntity<Object> updatePost(@Valid @RequestBody PostEditDto postEditDto) {
         return postService.updatePost(postEditDto);
     }
 
     // get all posts
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public List<Post> getAllPosts() {
+    public ResponseEntity<Object> getAllPosts() {
         return postService.getPosts();
     }
 
