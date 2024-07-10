@@ -5,6 +5,7 @@ import com.internship.blog.dto.PostEditDto;
 import com.internship.blog.model.Post;
 import com.internship.blog.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -43,12 +44,12 @@ public class PostService {
         return postRepository.findById(id).orElse(null);
     }
 
-    public String deletePostById(Integer id) {
+    public ResponseEntity<Object> deletePostById(Integer id) {
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
-            return "Post not found with id: " + id;
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post not found with id: " + id);
         }
         postRepository.deleteById(id);
-        return "Post with id " + id + " was deleted";
+        return ResponseEntity.ok("Post was deleted successfully");
     }
 }
