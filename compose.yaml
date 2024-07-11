@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    image: spring-app
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blogdb
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Bc.9876
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Bc.9876
+      - POSTGRES_DB=blogdb
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
