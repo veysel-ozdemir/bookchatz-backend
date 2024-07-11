@@ -30,7 +30,6 @@ public class BookMapper {
                 book.getId(),
                 book.getTitle(),
                 book.getAuthorName(),
-                book.getBookType(),
                 book.getPhotoUrl()
         );
     }
