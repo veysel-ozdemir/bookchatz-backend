@@ -29,7 +29,8 @@ public class User {
     @Column(name = "photo_url")
     private String photoUrl;
     @OneToMany(
-            mappedBy = "user"
+            mappedBy = "user",
+            fetch = FetchType.EAGER
     )
     private List<Post> posts;
 }

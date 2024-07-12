@@ -28,6 +28,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column(length = 65535) // max length
     private String review;
     @Column(name = "commit_date")
     private LocalDate commitDate;
