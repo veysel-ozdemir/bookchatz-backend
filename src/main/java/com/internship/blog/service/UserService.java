@@ -61,7 +61,8 @@ public class UserService {
             User updatedUser = userMapper.toUpdatedUser(userEditDto, presentUser);
             // save the changes
             userRepository.save(updatedUser);
-            return ResponseEntity.ok(updatedUser);
+            // return the mapped entity
+            return ResponseEntity.ok(userMapper.toUserResponseDto(updatedUser));
         } else {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("The entered email is already in use");
         }
