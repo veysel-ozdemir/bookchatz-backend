@@ -40,6 +40,10 @@ public class PostService {
         return ResponseEntity.ok(postMapper.toPostResponseDto(updatedPost));
     }
 
+    public ResponseEntity<Object> getPostsByUserId(Integer id) {
+        return ResponseEntity.ok(postRepository.findPostsByUserId(id));
+    }
+
     public Post getPostById(Integer id) {
         return postRepository.findById(id).orElse(null);
     }

@@ -45,6 +45,12 @@ public class PostController {
         return postService.deletePostById(id);
     }
 
+    // get all posts by user id
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<Object> getAllPostsByUserId(@PathVariable("userId") Integer userId) {
+        return postService.getPostsByUserId(userId);
+    }
+
     // get post by id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
