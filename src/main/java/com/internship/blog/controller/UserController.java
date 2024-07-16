@@ -53,6 +53,12 @@ public class UserController {
         return userService.deleteUserById(id);
     }
 
+    // get all posts of user
+    @GetMapping("/posts")
+    public ResponseEntity<Object> getAllPostsByUserId(@RequestParam("userId") Integer userId) {
+        return userService.getPostsByUserId(userId);
+    }
+
     // get method with path variable
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)

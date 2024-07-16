@@ -77,6 +77,10 @@ public class UserService {
         return ResponseEntity.ok("User was deleted successfully");
     }
 
+    public ResponseEntity<Object> getPostsByUserId(Integer id) {
+        return ResponseEntity.ok(userRepository.findPostsByUserId(id));
+    }
+
     public List<User> getUsers() {
         return userRepository.findAll();
     }
