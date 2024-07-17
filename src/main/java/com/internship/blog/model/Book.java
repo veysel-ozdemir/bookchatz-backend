@@ -30,7 +30,8 @@ public class Book {
     @Column(name = "photo_url")
     private String photoUrl;
     @OneToMany(
-            mappedBy = "book"
+            mappedBy = "book",
+            fetch = FetchType.EAGER
     )
     private List<Post> posts;
 }

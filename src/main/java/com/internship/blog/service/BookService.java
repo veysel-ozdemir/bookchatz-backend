@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class BookService {
@@ -34,6 +36,10 @@ public class BookService {
 
     public Book getBookById(Integer id) {
         return bookRepository.findById(id).orElse(null);
+    }
+
+    public List<Book> getTopBooks() {
+        return bookRepository.findTopBooks();
     }
 
     public String deleteBookById(Integer id) {
