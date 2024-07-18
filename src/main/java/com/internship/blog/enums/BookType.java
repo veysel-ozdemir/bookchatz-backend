@@ -10,5 +10,9 @@ public enum BookType {
     CLASSIC,
     HUMOR,
     ROMANCE,
-    RELIGION
+    RELIGION;
+
+    public static BookType fromString(String value) {
+        return BookType.valueOf(value.toUpperCase());
+    }
 }

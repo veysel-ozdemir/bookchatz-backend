@@ -3,6 +3,7 @@ package com.internship.blog.service;
 import com.internship.blog.dto.PostDto;
 import com.internship.blog.dto.PostEditDto;
 import com.internship.blog.dto.PostResponseDto;
+import com.internship.blog.enums.BookType;
 import com.internship.blog.model.Book;
 import com.internship.blog.model.Post;
 import com.internship.blog.model.User;
@@ -37,7 +38,7 @@ public class PostMapper {
             book = new Book();
             book.setTitle(postDto.bookTitle());
             book.setAuthorName(postDto.authorName());
-            book.setBookType(postDto.bookType());
+            book.setBookType(BookType.fromString(postDto.bookType()));
             book.setPhotoUrl(postDto.bookPhotoUrl());
             book.setPosts(new ArrayList<Post>());
             // save the new created book to persist data
@@ -64,13 +65,13 @@ public class PostMapper {
             book = new Book();
             book.setTitle(postEditDto.bookTitle());
             book.setAuthorName(postEditDto.authorName());
-            book.setBookType(postEditDto.bookType());
+            book.setBookType(BookType.fromString(postEditDto.bookType()));
             book.setPhotoUrl(postEditDto.bookPhotoUrl());
             book.setPosts(new ArrayList<Post>());
             // save the new created book to persist data
             bookService.saveBook(book);
         } else {
-            book.setBookType(postEditDto.bookType());
+            book.setBookType(BookType.fromString(postEditDto.bookType()));
             book.setPhotoUrl(postEditDto.bookPhotoUrl());
         }
         book.getPosts().add(presentPost);

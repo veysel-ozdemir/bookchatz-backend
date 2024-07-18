@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "post")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "post_id")
     private Integer id;

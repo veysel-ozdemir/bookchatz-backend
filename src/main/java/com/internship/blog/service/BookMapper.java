@@ -2,6 +2,7 @@ package com.internship.blog.service;
 
 import com.internship.blog.dto.BookDto;
 import com.internship.blog.dto.BookResponseDto;
+import com.internship.blog.enums.BookType;
 import com.internship.blog.model.Book;
 import com.internship.blog.model.Post;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class BookMapper {
         // set the fields of book
         book.setTitle(bookDto.title());
         book.setAuthorName(bookDto.authorName());
-        book.setBookType(bookDto.bookType());
+        book.setBookType(BookType.fromString(bookDto.bookType()));
         book.setPhotoUrl(bookDto.photoUrl());
         book.setPosts(new ArrayList<Post>());
 

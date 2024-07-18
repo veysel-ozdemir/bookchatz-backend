@@ -19,13 +19,15 @@ import java.util.List;
 @Table(name = "book")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Book {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "book_id")
     private Integer id;
     private String title;
+    @Column(name = "author_name")
     private String authorName;
     @Enumerated(EnumType.STRING)
+    @Column(name = "book_type")
     private BookType bookType;
     @Column(name = "photo_url")
     private String photoUrl;
