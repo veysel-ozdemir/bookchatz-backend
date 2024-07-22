@@ -67,64 +67,68 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 ## Running the Application
 
 1. Build the project using Maven:
-```bash
-mvn clean install
-```
+   ```bash
+   mvn clean install
+   ```
 
 2. Run the Spring Boot application:
-```bash
-mvn spring-boot:run
-```
+   ```bash
+   mvn spring-boot:run
+   ```
 
 ## Running the Containerized Application
 The application is fully containerized and deployed on [Docker Hub](https://hub.docker.com/r/veyselch/spring-app). 
 If you prefer to run the entire application, including the Spring Boot backend and PostgreSQL database, using Docker, follow these steps:
+
 1. Ensure Docker is running on your local machine.
 
 2. Create the following `compose.yaml` file:
-```yaml
-version: '3.8'
+   ```yaml
+   version: '3.8'
+   
+   services:
+     app:
+       image: veyselch/spring-app:latest
+       container_name: app-latest
+       ports:
+         - "8000:8080"
+       depends_on:
+         - db
+       networks:
+         - backend
+       environment:
+         SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blogdb
+         SPRING_DATASOURCE_USERNAME: postgres
+         SPRING_DATASOURCE_PASSWORD: Bc.9876
+   
+     db:
+       image: postgres:latest
+       container_name: db-latest
+       environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=Bc.9876
+         - POSTGRES_DB=blogdb
+       ports:
+         - "5432:5432"
+       networks:
+         - backend
+   
+   networks:
+     backend:
+       driver: bridge
+   ```
 
-services:
-  app:
-    image: veyselch/spring-app:latest
-    container_name: app-latest
-    ports:
-      - "8000:8080"
-    depends_on:
-      - db
-    networks:
-      - backend
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blogdb
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: Bc.9876
-
-  db:
-    image: postgres:latest
-    container_name: db-latest
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Bc.9876
-      - POSTGRES_DB=blogdb
-    ports:
-      - "5432:5432"
-    networks:
-      - backend
-
-networks:
-  backend:
-    driver: bridge
-```
 3. Open the terminal in the directory where `compose.yaml` file is located and run the file with the following command:
-```bash
-docker-compose up
-```
+   ```bash
+   docker-compose up
+   ```
 
-> *Run this command on subsequent uses to ensure that you are using the latest version of the containerized application:*
-> ```bash
-> docker-compose up --pull always
-> ```
+   > *Run this command on subsequent uses to ensure that you are using the latest version of the containerized application:*
+   > ```bash
+   > docker-compose up --pull always
+   > ```
+
+4. Once the containers are up and running, you can access the application at `http://localhost:8000`.
 
 ## API Endpoints
 
