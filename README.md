@@ -42,8 +42,8 @@ Before you begin, ensure you have the following tools installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/veysel-ozdemir/spring-backend-internship.git
-cd spring-backend-internship
+git clone https://github.com/veysel-ozdemir/bookchatz-backend.git
+cd bookchatz-backend
 ```
 
 ## Configuration
